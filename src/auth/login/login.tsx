@@ -7,16 +7,21 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
-interface P {}
-interface S {}
+
+interface P {
+}
+interface S {
+    email: string,
+    password: string,
+}
 
 export default class Login extends React.PureComponent<P & WithStyles<loginStyles>, S> {
 
     public static Display = withStyles(styles as any)(Login) as React.ComponentType<P>
 
     public state: Readonly<S> = {
-        email1: "",
-        password1: "",
+        email: "",
+        password: "",
     };
     render () {
         const { classes } = this.props;
@@ -29,8 +34,8 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                         <Grid container >
                                 <Grid item xs={12} className={classes.center} >
                                     <form className={classes.form} noValidate autoComplete="off" onSubmit={this.login}>
-                                        <InputEmail id="outlined-basic" label="EMAIL" variant="outlined" onChange={this.changeVal}/>
-                                        <InputPassword id="outlined-basic" label="MOT DE PASSE" variant="outlined" onChange={this.changeVal}/>
+                                        <InputEmail id="outlined-basic" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal}/>
+                                        <InputPassword id="outlined-basic" label="MOT DE PASSE" name="email" variant="outlined" onChange={this.changeVal}/>
                                         <div className={classes.passwordLost}>
                                             <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                         </div>
@@ -56,12 +61,14 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
     }
 
     login = (e: React.FormEvent<HTMLFormElement>) => {
-       const  _email = this.state.email1.trim(); 
-       const  _password = this.state.password1.trim();
+    //    const  _email = this.state.email.trim(); 
+    //    const  _password = this.state.password.trim();
         e.preventDefault() // empecher la redirection sur la même page
         const data = { // définir les data à envoyer
-            email: _email,
-            password: _password,
+            // email: _email,
+            // password: _password,
+            email: this.state.email.trim(),
+            password: this.state.password.trim(), 
         }
         axios.post(`http://localhost:3000/login`, data)
         .then(res => {
