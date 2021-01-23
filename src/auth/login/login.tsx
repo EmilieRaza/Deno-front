@@ -35,7 +35,7 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
                                 <Grid item xs={12} className={classes.center} >
                                     <form className={classes.form} noValidate autoComplete="off" onSubmit={this.login}>
                                         <InputEmail id="outlined-basic" label="EMAIL" name="email" variant="outlined" onChange={this.changeVal}/>
-                                        <InputPassword id="outlined-basic" label="MOT DE PASSE" name="email" variant="outlined" onChange={this.changeVal}/>
+                                        <InputPassword id="outlined-basic" label="MOT DE PASSE" name="password" variant="outlined" type="password" onChange={this.changeVal}/>
                                         <div className={classes.passwordLost}>
                                             <Link to="/request-password-lost" className={classes.link}>Mot de passe oublié ?</Link>
                                         </div>
@@ -70,15 +70,18 @@ export default class Login extends React.PureComponent<P & WithStyles<loginStyle
             email: this.state.email.trim(),
             password: this.state.password.trim(), 
         }
-        axios.post(`http://localhost:3000/login`, data)
+        axios.post(`http://localhost:3000`, data)
+        
         .then(res => {
             localStorage.setItem('currentUser', JSON.stringify(res.data)); // stock les informations de l'utilisateurs en front
             toast.success("Connexion réussie", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
+            console.log(data)
             setTimeout(() => {history.push('/')}, 100);
         })
         .catch(error => {
+            console.log(data)
             toast.warn("Veuillez remplir tous les champs", {
                 position: toast.POSITION.BOTTOM_CENTER
             });
