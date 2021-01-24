@@ -9,11 +9,13 @@ import VerifyEmail from './auth/verify-email/verify-email';
 import RequestPasswordRecovery from './auth/request-pwd-recovery/request-pwd-recovery';
 import Myaccount from './account/myAccount/myAccount';
 import UpdateMyAccount from './account/updateMyAccount/updateMyAccount';
+import { Subscriptions } from '@material-ui/icons';
 
 const defaultProtectedRouteProps: ProtectedRouteProps = {
   isAuthenticated: true,
   authenticationPath: '/login',
 };
+
 
 const App = () => { 
     return (
