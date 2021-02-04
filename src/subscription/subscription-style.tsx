@@ -1,5 +1,5 @@
 import { Theme, createStyles } from '@material-ui/core/styles';
-import Background from   '../../assets/img/onde.png';
+import Background from   '../assets/img/onde.png';
 
 export type loginStyles = ("div1" | "ondeBg" | "center" | "form" | "back" |"container"
 | "link" | "subtitle" | "passwordLost"); // add class create

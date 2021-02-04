@@ -8,7 +8,7 @@ import {Elements} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
 
 
-
+{/* 
 interface P {}
 interface S {}
 
@@ -90,3 +90,4 @@ const PayButton = withStyles({
         },
     },
 })(Button);
+*/}
